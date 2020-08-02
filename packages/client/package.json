@@ -1,0 +1,42 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "pinia": "^0.1.0-alpha.1",
+    "redaxios": "^0.3.0",
+    "register-service-worker": "^1.7.1",
+    "vue": "^3.0.0-rc.5",
+    "vue-router": "^4.0.0-beta.4",
+    "vuex": "^4.0.0-beta.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "@vue/compiler-sfc": "^3.0.0-rc.5",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "eslint": "^7.6.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-vue": "^7.0.0-beta.1",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "typescript": "~3.9.7",
+    "vite": "^1.0.0-rc.4"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "pnpm lint",
+      "git add"
+    ]
+  }
+}

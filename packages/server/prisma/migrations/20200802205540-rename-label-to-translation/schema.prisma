@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       Int       @default(autoincrement()) @id
+  email    String    @unique
+  password String
+  name     String
+  projects Project[]
+}
+
+model Project {
+  id     Int     @default(autoincrement()) @id
+  name   String
+  index  Int     @default(autoincrement())
+  groups Group[]
+  user   User    @relation(fields: [userId], references: [id])
+  userId Int
+  langs  Lang[]
+}
+
+model Lang {
+  id        Int           @default(autoincrement()) @id
+  name      String
+  slug      String
+  rtl       Boolean
+  code      String
+  index     Int           @default(autoincrement())
+  Label     Translation[]
+  Project   Project       @relation(fields: [projectId], references: [id])
+  projectId Int
+}
+
+model Group {
+  id           Int           @default(autoincrement()) @id
+  name         String
+  screenshot   String
+  index        Int           @default(autoincrement())
+  translations Translation[]
+  project      Project       @relation(fields: [projectId], references: [id])
+  projectId    Int
+}
+
+model Translation {
+  id         Int      @default(autoincrement()) @id
+  value      String
+  index      Int      @default(autoincrement())
+  lang       Lang     @relation(fields: [langId], references: [id])
+  langId     Int
+  position   Position @relation(fields: [positionId], references: [id])
+  positionId Int
+  group      Group    @relation(fields: [groupId], references: [id])
+  groupId    Int
+  @@map("Label")
+}
+
+model Position {
+  id    Int           @default(autoincrement()) @id
+  x     Float
+  y     Float
+  label Translation[]
+}

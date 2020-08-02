@@ -1,0 +1,6 @@
+# Prisma Migrate lockfile v1
+
+20200802191917-init
+20200802192247-lang-to-projects
+20200802205540-rename-label-to-translation
+20200802205708-remove-label-alias
